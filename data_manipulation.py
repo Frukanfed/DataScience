@@ -11,8 +11,7 @@ train_SalePrice = train_df["SalePrice"]
 test_id = test_df["Id"]
 
 # 'Id' sütununu veri setlerinden çıkaralım
-train_df = train_df.drop(columns=["Id"])
-
+train_df = train_df.drop(columns=["Id", "SalePrice"])
 test_df = test_df.drop(columns=["Id"])
 
 # Sayısal sütunları tespit edelim (object olmayanlar)
@@ -46,6 +45,7 @@ test_df.fillna(-1, inplace=True)
 
 # 'Id' sütununu geri ekleyelim
 train_df["Id"] = train_id
+train_df["SalePrice"] = train_SalePrice
 test_df["Id"] = test_id
 
 # Sütunları tekrar sıralayalım
