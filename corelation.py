@@ -1,4 +1,5 @@
 import pandas as pd
+from sklearn.model_selection import train_test_split
 
 # Veri setlerini yükleyelim
 train_df = pd.read_csv("./data/train_normalized_encoded.csv")
@@ -24,7 +25,8 @@ selected_features = correlation_with_target[
 selected_features.append(target)
 train_selected = train_df[selected_features]
 
-# Seçilen özelliklere göre veri setini kaydedelim
-train_selected.to_csv("./updated_data/corelation_train_data.csv", index=False)
+train_data, test_data = train_test_split(train_selected, test_size=0.2, random_state=42)
 
-train_selected.head()
+# Bölünmüş veri setlerini kaydedelim
+train_data.to_csv("./updated_data/corelation_train_data.csv", index=False)
+test_data.to_csv("./updated_data/corelation_test_data.csv", index=False)
